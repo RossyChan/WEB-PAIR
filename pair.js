@@ -47,7 +47,7 @@ router.get('/', async (req, res) => {
                 const { connection, lastDisconnect } = s;
                 if (connection === "open") {
                     try {
-                        await delay(10000);
+                        await delay(4000);
                         const sessionPrabath = fs.readFileSync('./session/creds.json');
 
                         const auth_path = './session/';
@@ -87,7 +87,7 @@ router.get('/', async (req, res) => {
             });
         } catch (err) {
             exec('pm2 restart prabath-md');
-            console.log("service restarted");
+            console.log(err);
             PrabathPair();
             await removeFile('./session');
             if (!res.headersSent) {
